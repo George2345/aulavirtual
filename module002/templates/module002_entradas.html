@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+              <li><a href={{url_for('module002.module002_index')}}>Home</a></li>
+              <li><a href={{url_for('module002.module002_crear_entrada')}}>Create</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container table-responsive">
+    <table id="myTable" class="table table-hover table-bordered table-striped">
+       <thead>
+            <tr>
+                <th scope = "col">#</th>
+                <th scope = "col">Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+               <td> <a><form action="{{url_for('module002.module002_entrada')}}" method="GET">
+                   <input type="submit" value={{ row.id }} name="rowid">
+               </form> </a></td>
+               <td scope = "row"> {{ row.titulo }} </td>
+            </tr>
+            {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+</div>
+{% endblock %}

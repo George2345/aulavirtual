@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+              <li><a href={{url_for('module003.module003_index')}}>Home</a></li>
+              <li><a href={{url_for('module003.module003_crear_tarea')}}>Create</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <form class="form-signin" method="POST" action="{{url_for('module003.module003_crear_tarea')}}">
+        <h2 class="form-signin-heading"> Crear Tarea </h2>
+        {{ form.hidden_tag() }}
+    	{{ wtf.form_field(form.titulo) }}
+    	{{ wtf.form_field(form.fecha) }}
+    	{{ wtf.form_field(form.contenido) }}
+
+       <button class="btn btn-lg btn-primary btn-block" type="submit"> Crear tarea </button>
+       </form>
+
+{% endblock %}

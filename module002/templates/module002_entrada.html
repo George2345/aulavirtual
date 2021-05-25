@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+              <li><a href={{url_for('module002.module002_index')}}>Home</a></li>
+              <li><a href={{url_for('module002.module002_crear_entrada')}}>Create</a></li>
+              <li><a href={{url_for('module002.module002_entradas')}}>Entradas</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+        <h1>{{ entrada.titulo }}</h1>
+        <h3>{{ entrada.cuerpo }}</h3>
+        <form class="form-signin" method="POST" action="{{url_for('module002.module002_entrada')}}?rowid={{entrada.id}}">
+            <h2 class="form-signin-heading"> Comentarios: </h2>
+            {{ form.hidden_tag() }}
+        	{{ wtf.form_field(form.cuerpo) }}
+       <button class="btn btn-primary btn-block" type="submit"> Comentar </button>
+       </form>
+        {% for comentario in comentarios %}
+            <hr>
+            <h3>{{ comentario.user_id }}</h3>
+            <h4> {{ comentario.cuerpo }} </h4>
+            <hr>
+        {% endfor %}
+    </div>
+{% endblock %}
